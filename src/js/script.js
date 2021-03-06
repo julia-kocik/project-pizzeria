@@ -37,7 +37,8 @@
       productList: '.cart__order-summary',
       toggleTrigger: '.cart__summary',
       totalNumber: `.cart__total-number`,
-      totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+      totalPrice: '.cart__total-price strong',
+      totalSum: '.cart__order-total .cart__order-price-sum strong',
       subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
       deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
       form: '.cart__order',
@@ -309,7 +310,9 @@
     announce() {
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -333,12 +336,16 @@
       thisCart.dom.subTotalPrice = element.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = element.querySelector(select.cart.totalPrice);
       thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
+      thisCart.dom.totalSum = element.querySelector(select.cart.totalSum);
     }
     initActions() {
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function(event) {
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+      thisCart.dom.productList.addEventListener('updated', function() {
+        thisCart.update();
       });
     }
     add(menuProduct) {
@@ -376,6 +383,7 @@
       thisCart.dom.totalNumber.innerHTML = totalNumber;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+      thisCart.dom.totalSum.innerHTML = thisCart.totalPrice;
     }
   }
   
