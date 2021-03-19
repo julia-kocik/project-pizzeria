@@ -7,19 +7,23 @@
     position: relative;
   }
 }
+
 .logo {
   display: inline-block;
   line-height: 1;
+
   &__title {
     margin: 0 0 $base-size 0;
     font-size: ($base-size * 4);
     font-family: $font-header;
     font-weight: $font-light;
     text-transform: uppercase;
+
     span {
       font-weight: $font-bold;
     }
   }
+
   &__subtitle {
     margin: 0;
     font-size: ($base-size * 1.5);
@@ -48,7 +52,6 @@
     &.active {
       background: lighten($color-dark, 75%);
     }
-
   }
 
 }
