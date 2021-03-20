@@ -66,13 +66,13 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
+        //console.log('parsedResponse', parsedResponse);
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
         /* execute initMenu method */
         thisApp.initMenu();
       });
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
+    //console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
   initMenu: function() {
     const thisApp = this;
@@ -98,9 +98,9 @@ const app = {
     //console.log('classNames:', classNames);
     //console.log('settings:', settings);
     //console.log('templates:', templates);
-    thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initPages();
     thisApp.initBooking();
   },
 };
